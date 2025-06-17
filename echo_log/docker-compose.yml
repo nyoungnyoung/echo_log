@@ -1,0 +1,14 @@
+version: '3.8' # Docker Compose 파일 형식 버전을 명시합니다. (선택 사항이지만 권장)
+services:
+  postgres:
+    image: postgres # 사용할 이미지 이름(최신버전) 특정버전은 postgres:15 이런식으로
+    container_name: echo-log-postgres # 컨테이너 이름 (docker run --name 과 동일)
+    restart: always # 항상 재시작 (추가적으로 권장하는 옵션)
+    environment:
+      POSTGRES_USER: sunysa8
+      POSTGRES_PASSWORD: tjsdud96
+      POSTGRES_DB: echo_log
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
