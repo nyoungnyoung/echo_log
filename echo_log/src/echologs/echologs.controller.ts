@@ -6,8 +6,11 @@ export class EchologsController {
   constructor(private readonly echologsService: EchologsService) {}
 
   @Post()
-  async create(@Body('content') content: string) {
-    return this.echologsService.create(content);
+  async create(
+    @Body('content') content: string,
+    @Body('username') username: string,
+  ) {
+    return this.echologsService.create(content, username);
   }
 
   @Get()

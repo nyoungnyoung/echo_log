@@ -16,6 +16,7 @@ datasource db {
 
 model EchoLog {
   id        Int   @id @default(autoincrement())
+  username  String
   content   String
   createdAt DateTime @default(now())
 

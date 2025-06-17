@@ -5,8 +5,8 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class EchologsService {
-  async create(content: string) {
-    return prisma.echoLog.create({ data: { content } });
+  async create(content: string, username: string) {
+    return prisma.echoLog.create({ data: { content, username } });
   }
 
   async findAll() {
