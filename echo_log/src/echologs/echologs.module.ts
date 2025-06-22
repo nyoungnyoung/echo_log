@@ -4,6 +4,6 @@ import { EchologsController } from './echologs.controller';
 
 @Module({
   providers: [EchologsService],
-  controllers: [EchologsController]
+  controllers: [EchologsController],
 })
 export class EchologsModule {}
