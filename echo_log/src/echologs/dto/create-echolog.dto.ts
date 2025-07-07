@@ -7,5 +7,5 @@ export class CreateEchologDto {
 
   @IsString()
   @IsNotEmpty()
-  username: string;
+  userId: string;
 }

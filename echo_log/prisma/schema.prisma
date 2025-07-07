@@ -14,11 +14,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model EchoLog {
-  id        Int   @id @default(autoincrement())
+model User {
+  id        Int        @id @default(autoincrement())
+  userId    String     @unique  // 로그인용 아이디 (고유값)
+  password  String
   username  String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  echologs  EchoLog[]  // 한 사용자가 여러 개의 한마디를 가질 수 있음
+
+  @@map("users")
+}
+
+model EchoLog {
+  id        Int      @id @default(autoincrement())
   content   String
   createdAt DateTime @default(now())
+  userId    Int      // User 모델과 연결하는 외래키
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("echo_log")
 }

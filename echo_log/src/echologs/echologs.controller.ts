@@ -7,22 +7,22 @@ export class EchologsController {
   constructor(private readonly echologsService: EchologsService) {}
 
   @Post()
-  async create(@Body() dto: CreateEchologDto) {
+  create(@Body() dto: CreateEchologDto) {
     return this.echologsService.create(dto);
   }
 
   @Get()
-  async findAll() {
+  findAll() {
     return this.echologsService.findAll();
   }
 
   @Get('random')
-  async getRandom() {
+  getRandom() {
     return this.echologsService.getRandom();
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
+  remove(@Param('id') id: string) {
     return this.echologsService.remove(+id);
   }
 }
