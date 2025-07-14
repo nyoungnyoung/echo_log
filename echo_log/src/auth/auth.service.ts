@@ -1,9 +1,10 @@
+import * as bcrypt from 'bcrypt';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
-import * as bcrypt from 'bcrypt';
+import { JwtPayload } from './interfaces/jwt-payload..interface';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,7 @@ export class AuthService {
     const user = await this.userService.create(registerDto);
 
     // JWT 토큰  생성
-    const payload = {
+    const payload: JwtPayload = {
       sub: user.id,
       userId: user.userId,
       username: user.username,
@@ -49,7 +50,11 @@ export class AuthService {
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid credentials');
     }
-    const payload = { userId: user.userId, username: user.username };
+    const payload: JwtPayload = {
+      sub: user.id,
+      userId: user.userId,
+      username: user.username,
+    };
     const token = this.jwtService.sign(payload);
     return {
       user: {
